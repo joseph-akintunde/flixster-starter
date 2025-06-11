@@ -1,0 +1,26 @@
+.CardContent{
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 15em;
+    height: 18em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+.img{
+    height: 12em;
+}
+.CardContent:hover{
+   transform: scale(1.1);
+   transition: 1s ease-in-out;
+}
+.titleRating{
+    background-color: grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.titleRating p:first-child{
+    font-weight: 700;
+}

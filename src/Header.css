@@ -1,0 +1,19 @@
+.Header{
+    background-color: grey;
+    height: 10em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.Header h1{
+    margin-top: 0;
+}
+/* .headerComponents{
+    display: flex;
+    margin-bottom: 5em;
+    justify-content: space-around;
+} */
+.headerComponents input{
+    height: 1.5em;
+}

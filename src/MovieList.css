@@ -1,0 +1,11 @@
+.MovieCard{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 50px;
+}
+.loadBtn{
+    background-color: black;
+    padding: 10px;
+
+}

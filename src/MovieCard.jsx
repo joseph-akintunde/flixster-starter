@@ -1,6 +1,6 @@
 import PropTypes from "prop-types"
-import "./CardContent.css"
-function CardContent({image, title, rating}){
+import "./MovieCard.css"
+function MovieCard({image, title, rating}){
     const imgURL = `https://image.tmdb.org/t/p/w500/${image}`
     return(
         <div className="CardContent">
@@ -9,12 +9,14 @@ function CardContent({image, title, rating}){
                 <p>{title}</p>
                 <p>Rating: {rating}</p>
             </div>
+            <p>🤍</p>
+            <p>👁️</p>
         </div>
     )
 }
-CardContent.propTypes = {
+MovieCard.propTypes = {
     image: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired 
 }
-export default CardContent
+export default MovieCard

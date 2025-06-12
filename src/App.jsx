@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import MovieList from './MovieList'
 import SearchComponents from './SearchComponents';
-import Sort from "./Sort"
 import "./Header.css"
-const url = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1';
+import Sort from "./Sort"
+// let pageNumber = 1
+//const url = `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${pageNumber}`;
 const options = {
       method: 'GET',
       headers: {
@@ -15,11 +16,16 @@ const options = {
 function App(){
   const[movie, setMovie] = useState("Mission Impossible")
   const[results, setResults] = useState({})
+  const[pageNumber, setPageNumber] = useState(1)
+  function toNextPage(){
+    setPageNumber(pageNumber+1)
+  }
+  
   useEffect(() => {
     async function fetchMovies(movie){
       try{
          const apiKey = import.meta.env.VITE_APP_API_KEY
-         const response = await fetch(url,options)
+         const response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${pageNumber}`,options)
          if(!response.ok){
           throw new Error("Can't load movies")
          }
@@ -33,7 +39,7 @@ function App(){
    if(movie){
      fetchMovies(movie)
    }
-  },[movie])
+  },[pageNumber,movie])
   function movieChange(newMovie){
     setMovie(newMovie)
   }
@@ -45,11 +51,14 @@ function App(){
     <div className="App">
       <header className="Header">
           <h1>🎥 Flixster 🎬</h1>
-          <SearchComponents DataSubmit={movieChange}/>
+          <SearchComponents setResults={ setResults }/>
           <Sort/>
       </header>
     <MovieList results={results} movie = {movie}/>
-    <button >load more</button>
+    <button onClick={toNextPage}>load more</button>
+    <footer>
+      <p>&copy; joseph akintunde 2024</p>
+    </footer>
     </div>
   )
 }

@@ -8,10 +8,11 @@ const options = {
 }}
 function Sort({setResults,movies}){
     console.log(movies)
-    let Sorted = null;
     const [sortType, setSortType] = useState('')
-    const newMovies = [...movies]
-    if(sortType === "title"){
+    function SortMovies(movies, sortType){
+        let Sorted = null;
+        const newMovies = movies ?[...movies]:[]
+        if(sortType === "title"){
         Sorted = newMovies.sort((a,b) => a.title.localeCompare(b.title))
     } else if(sortType === "rating"){
         Sorted = newMovies.sort((a,b) => {
@@ -24,11 +25,14 @@ function Sort({setResults,movies}){
             return date2 - date1
         })
     }else{
-        Sorted = movies
+        Sorted = newMovies
     }
+    }
+    
     useEffect(()=>{
-        const newSortedItems = Sort(movies)
-        setResults(newSortedItems)
+        const newSortedItems = SortMovies(movies.results,sortType)
+        let mov = {results: newSortedItems}
+        setResults(mov)
     },[sortType])
     return(
             <select style={{width:'10em'}} id="movies" className="sort" value = {sortType} onChange={(e) => setSortType(e.target.value)}>

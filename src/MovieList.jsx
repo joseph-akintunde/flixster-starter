@@ -5,6 +5,7 @@ import PropTypes from "prop-types"
 // import { useImperativeHandle } from "react"
 function MovieList({onClick,results}){
     if ('results' in results) {
+        console.log(results)
         const movieList = RenderMovie(results.results)
         //console.log(movieList)
         //console.log(results) 

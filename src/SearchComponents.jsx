@@ -10,7 +10,6 @@ function SearchComponents({setResults}){
     const [searchMovie, setSearchMovie] = useState('')
     function handleSearchChange(text){
          setSearchMovie(text)
-         
     }
     async function handleSearch(e){
         e.preventDefault()

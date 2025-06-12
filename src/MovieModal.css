@@ -1,13 +1,19 @@
 .ModalBackground{
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.2);
+    /* width: 100%;
+    height: 100%; */
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .ModalContent{
     background-color: lightgrey;
+    overflow: scroll;
     width: 70%;
     margin: auto;
     height: 50em;
@@ -15,5 +21,9 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-
+}
+.ModalContent img{
+    height: 60%;
+    display: flex;
+    justify-content: center;
 }

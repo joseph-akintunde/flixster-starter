@@ -12,6 +12,7 @@ function MovieList({onClick,results}){
             <div className="MovieCard">
                 {
                 movieList.map((obj,index) => {
+                    console.log(obj)
                     return(
                         <MovieCard key = {index} image = {obj.image} title = {obj.title} rating = {obj.rating} overview = {obj.overview} onClick = {() => onClick(obj)}/>
                     )   

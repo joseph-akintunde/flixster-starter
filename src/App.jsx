@@ -16,7 +16,7 @@ const options = {
 }
 function App(){
   const [openModal, setOpenModal] = useState(false)
-  const [selectedMovie, setSelectedMovie] = useState(null)
+  //const [selectedMovie, setSelectedMovie] = useState(null)
   const[movie, setMovie] = useState("Mission Impossible")
   const[results, setResults] = useState({})
   const[pageNumber, setPageNumber] = useState(1)
@@ -26,6 +26,7 @@ function App(){
   
   useEffect(() => {
     async function fetchMovies(movie){
+      console.log("any")
       try{
          const apiKey = import.meta.env.VITE_APP_API_KEY
          const response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${pageNumber}`,options)
@@ -43,22 +44,25 @@ function App(){
      fetchMovies(movie)
    }
   },[pageNumber,movie])
-  // function movieChange(newMovie){
-  //   setMovie(newMovie)
+  useEffect(() => {
+    console.log(movie)
+  },[movie])
+  //function movieChange(newMovie){
+  //  setMovie(newMovie)
   // }
   // function resultChange(newResult){
   //   setResults(newResult)
   // }
-  console.log(results)
+  console.log(movie)
   return (
     <div className="App">
       <header className="Header">
           <h1>🎥 Flixster 🎬</h1>
           <SearchComponents setResults={ setResults }/>
-          {/* <Sort/> */}
+          <Sort setResults={setResults} movies={results}/>
       </header>
-    <MovieList onClick = {(movie) => {setSelectedMovie(movie); setOpenModal(true)}} results={results} movie = {movie}/>
-    {openModal && <MovieModal closeModal={setOpenModal} movie={selectedMovie}/>}
+    <MovieList onClick = {(movie) => {setMovie(movie); setOpenModal(true)}} results={results} movie = {movie}/>
+    {openModal && <MovieModal closeModal={setOpenModal} keyId={movie.id} image={movie.image} overview={movie.overview} release_date={movie.release_date} title={movie.title}/>}
     <button onClick={toNextPage}>load more</button>
     <footer>
       <p>&copy; joseph akintunde 2024</p>

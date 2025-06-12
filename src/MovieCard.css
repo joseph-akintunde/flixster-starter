@@ -9,7 +9,7 @@
     overflow: hidden;
 }
 .img{
-    height: 15.5em;
+    height: 14em;
 }
 .CardContent:hover{
    transform: scale(1.1);

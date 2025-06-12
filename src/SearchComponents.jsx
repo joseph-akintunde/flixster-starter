@@ -25,7 +25,7 @@ function SearchComponents({setResults}){
     <form className="Submit">
        <input name = "inputForm" className = 'inputSpace' type="search" placeholder="Search for movies" onChange = {(e) => handleSearchChange(e.target.value)}/>
        <button onClick = {handleSearch} className="searchBtn" type="submit">Search</button>
-       <button className="clearBtn">Clear</button>
+       <button onClick = {() => {searchMovie(''); ([])}} className="clearBtn">Clear</button>
     </form>
     )
 }

@@ -3,7 +3,7 @@ import { RenderMovie } from "../rendermovie/RenderMovie"
 import MovieCard from "./MovieCard"
 import PropTypes from "prop-types"
 // import { useImperativeHandle } from "react"
-function MovieList({movie,results}){
+function MovieList({onClick,results}){
     if ('results' in results) {
         const movieList = RenderMovie(results.results)
         //console.log(movieList)
@@ -13,7 +13,7 @@ function MovieList({movie,results}){
                 {
                 movieList.map((obj,index) => {
                     return(
-                        <MovieCard key = {index} image = {obj.image} title = {obj.title} rating = {obj.rating} />
+                        <MovieCard key = {index} image = {obj.image} title = {obj.title} rating = {obj.rating} overview = {obj.overview} onClick = {() => onClick(obj)}/>
                     )   
                 })
     }

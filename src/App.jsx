@@ -4,6 +4,7 @@ import MovieList from './MovieList'
 import SearchComponents from './SearchComponents';
 import "./Header.css"
 import Sort from "./Sort"
+import { MovieModal } from './MovieModal';
 // let pageNumber = 1
 //const url = `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${pageNumber}`;
 const options = {
@@ -14,6 +15,8 @@ const options = {
 }
 }
 function App(){
+  const [openModal, setOpenModal] = useState(false)
+  const [selectedMovie, setSelectedMovie] = useState(null)
   const[movie, setMovie] = useState("Mission Impossible")
   const[results, setResults] = useState({})
   const[pageNumber, setPageNumber] = useState(1)
@@ -30,7 +33,7 @@ function App(){
           throw new Error("Can't load movies")
          }
          const data = await response.json()
-        console.log(data)
+         console.log(data)
          setResults(data)
       }  catch(error){
           console.log(error)
@@ -40,21 +43,22 @@ function App(){
      fetchMovies(movie)
    }
   },[pageNumber,movie])
-  function movieChange(newMovie){
-    setMovie(newMovie)
-  }
-  function resultChange(newResult){
-    setResults(newResult)
-  }
+  // function movieChange(newMovie){
+  //   setMovie(newMovie)
+  // }
+  // function resultChange(newResult){
+  //   setResults(newResult)
+  // }
   console.log(results)
   return (
     <div className="App">
       <header className="Header">
           <h1>🎥 Flixster 🎬</h1>
           <SearchComponents setResults={ setResults }/>
-          <Sort/>
+          {/* <Sort/> */}
       </header>
-    <MovieList results={results} movie = {movie}/>
+    <MovieList onClick = {(movie) => {setSelectedMovie(movie); setOpenModal(true)}} results={results} movie = {movie}/>
+    {openModal && <MovieModal closeModal={setOpenModal} movie={selectedMovie}/>}
     <button onClick={toNextPage}>load more</button>
     <footer>
       <p>&copy; joseph akintunde 2024</p>

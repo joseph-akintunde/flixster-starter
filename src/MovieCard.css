@@ -2,14 +2,14 @@
     border: 2px solid black;
     border-radius: 10px;
     width: 15em;
-    height: 18em;
+    height: 25em;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
 }
 .img{
-    height: 12em;
+    height: 15.5em;
 }
 .CardContent:hover{
    transform: scale(1.1);

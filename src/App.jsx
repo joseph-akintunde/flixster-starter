@@ -35,7 +35,7 @@ function App() {
   function toNextPage() {
     setPageNumber(pageNumber + 1);
   }
-  async function fetchMovies() {
+  async function fetchMovies(page = pageNumber) {
     console.log("any");
     try {
       const apiKey = import.meta.env.VITE_APP_API_KEY;
@@ -48,7 +48,7 @@ function App() {
       }
       const data = await response.json();
       console.log(data);
-      setResults((prev) => [...prev,...data.results])
+      setResults((prev) => page > 1 ? [...prev, ...data.results] : data.results);
       // setResults(data.results);
       console.log(data.results);
     } catch (error) {
@@ -56,10 +56,10 @@ function App() {
     }
   }
   useEffect(() => {
-    console.log("mess")
+    console.log("mess");
     fetchMovies();
   }, [pageNumber]);
-  
+
   // useEffect(() => {
   //   console.log(movie);
   // }, [movie]);
@@ -71,8 +71,8 @@ function App() {
           <a href="#">FAVOURITES</a>
           <a href="#">WATCHED</a> */}
         <h1>🎥 Flixster 🎬</h1>
-        <SearchComponents setResults={setResults}/>
-          {<Sort setResults={setResults} movies={results}/>}
+        <SearchComponents setResults={setResults} />
+        <Sort setResults={setResults} movies={results} />
       </header>
       <MovieList
         onClick={(movie) => {

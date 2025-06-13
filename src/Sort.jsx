@@ -27,6 +27,7 @@ function Sort({setResults,movies}){
     }else{
         Sorted = newMovies
     }
+    return Sorted
     }
     
     useEffect(()=>{

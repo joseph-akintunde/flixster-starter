@@ -4,6 +4,7 @@ import PropTypes from "prop-types"
 export function MovieModal({closeModal,keyId,title,image,release_date,overview}){
     const[runtime, setRuntime] = useState(null)
     const[genres, setGenres] = useState([])
+    const [trailerKey, setTrailerKey] = useState('')
     const url = `https://api.themoviedb.org/3/movie/${keyId}?language=en-US`;
     const options = {
         method: 'GET',
@@ -27,6 +28,25 @@ function runtimeInHours(minutes){
     if(!minutes) return;
     return `${Math.floor(minutes/60)}h ${minutes%60}m`
 }
+async function fetchMovies(keyId){
+    setTrailerKey(null)
+    try{
+         const apiKey = import.meta.env.VITE_APP_API_KEY
+         const response = await fetch(`https://api.themoviedb.org/3/movie/${keyId}/videos?api_key=${apiKey}&language=en-us`,options)
+         if(!response.ok){
+          throw new Error("Can't load movies")
+         }
+         const data = await response.json()
+         const  trailer = data.results.find(
+            video => video.site === "YouTube" && 
+            (video.type === 'Trailer') || video.type === "Teaser")
+            if(trailer){
+                setTrailerKey(trailer.key)
+            }
+      }  catch(error){
+          console.log(error)
+      }
+}
 
     return(
         <div className="ModalBackground">
@@ -36,8 +56,9 @@ function runtimeInHours(minutes){
                 <p>Release Date: {release_date}</p>
                 <p>Runtime: {runtimeInHours(runtime)}</p>
                 <p>Genre: {genres.map((genre) => genre.name).join(", ")}</p> 
+                <iframe src="" frameborder="0"></iframe>
                 <p>Overview: {overview}</p>
-                <iframe width="500" height="205" src="https://www.youtube.com/embed/HBpOzj-iBUg?si=tMhko11dmhahFL6s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe src="" frameborder="0"></iframe>
                 <button className = "closeBtn" onClick = {() => closeModal(false)} id="closeModal">CLOSE</button>
             </div>
         </div>

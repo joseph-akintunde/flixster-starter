@@ -6,9 +6,12 @@ import PropTypes from "prop-types"
 function MovieList({onClick,results}){
     if ('results' in results) {
         console.log(results)
-        const movieList = RenderMovie(results.results)
+        let movieList = []
         //console.log(movieList)
-        //console.log(results) 
+        if(results.results){
+            movieList = RenderMovie(results.results)
+        }
+        console.log(results) 
         return(
             <div className="MovieCard">
                 {

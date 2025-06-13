@@ -52,7 +52,7 @@ function MovieCard({image, title, rating, onClick}){
         <div className="CardContent" onClick = {onClick}>
             <img className = "img" src={imgURL} alt={title}/>
             <div className="titleRating">
-                <p>{title}</p>
+                <p className="title">{title}</p>
                 <p>Rating: {rating}</p>
                 <button onClick={(e) => {
                     liker()

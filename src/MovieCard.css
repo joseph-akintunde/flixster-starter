@@ -2,21 +2,25 @@
     border: 2px solid black;
     border-radius: 10px;
     width: 15em;
-    height: 25em;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
+    background-color: lightgrey;
 }
-.img{
-    height: 14em;
-}
+/* .title{
+    white-space: nowrap;
+} */
+/* .img{
+    height: 15em;
+} */
 .CardContent:hover{
    transform: scale(1.1);
    transition: 1s ease-in-out;
 }
 .titleRating{
-    background-color: grey;
+    background-color: lightgrey;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

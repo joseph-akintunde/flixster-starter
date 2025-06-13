@@ -20,7 +20,7 @@ function Sort({ setResults, movies }) {
       Sorted = newMovies.sort((a, b) => a.title.localeCompare(b.title));
     } else if (sortType === "rating") {
       Sorted = newMovies.sort((a, b) => {
-        return b.rating - a.rating;
+        return b.vote_average - a.vote_average;
       });
     } else if (sortType === "releaseDate") {
       Sorted = newMovies.sort((a, b) => {

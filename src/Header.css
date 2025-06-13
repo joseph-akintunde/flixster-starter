@@ -1,10 +1,11 @@
 .Header{
-    background-color: grey;
+    background-color: lightgrey;
     height: 10em;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    color: #282c34;
 }
 .Header h1{
     margin-top: 0;

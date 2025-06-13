@@ -1,8 +1,9 @@
 .Footer{
-    background-color: grey;
+    background-color: lightgrey;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    color: #282c34;
 }
 .socials{
     mix-blend-mode: multiply;

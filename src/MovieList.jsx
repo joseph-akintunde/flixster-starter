@@ -4,14 +4,15 @@ import MovieCard from "./MovieCard"
 import PropTypes from "prop-types"
 // import { useImperativeHandle } from "react"
 function MovieList({onClick,results}){
-    if ('results' in results) {
-        console.log(results)
-        let movieList = []
+    // console.log(results)
+    // if ('results' in results) {
+    //     console.log(results)
         //console.log(movieList)
-        if(results.results){
-            movieList = RenderMovie(results.results)
-        }
-        console.log(results) 
+        // if(results.results){
+        //     movieList = RenderMovie(results.results)
+        // }
+        console.log(results)
+        const movieList = RenderMovie(results) 
         return(
             <div className="MovieCard">
                 {
@@ -25,11 +26,11 @@ function MovieList({onClick,results}){
             </div>
         )
     }
-    else {
-        return (
-            <div>Loading...</div>
-        )
-    }
-}
+//     // else {
+//     //     return (
+//     //         <div>Loading...</div>
+//     //     )
+//     // }
+// }
 
 export default MovieList

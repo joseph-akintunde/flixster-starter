@@ -5,6 +5,7 @@
     gap: 2rem;
     padding: .5rem;
     justify-content: center;
+    color: #282c34;
 }
 
 .loadBtn{
@@ -14,7 +15,7 @@
     margin: 10px;
 }
 .loadBtn:hover{
-    background-color: grey;
+    background-color: lightgrey;
     color: white;
     transition: .5s ease-out;
     box-shadow: 10px 10px 10px black;

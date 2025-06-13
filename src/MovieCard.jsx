@@ -2,19 +2,21 @@ import PropTypes from "prop-types"
 import "./MovieCard.css"
 import { useEffect, useState } from "react"
 import { MovieModal } from "./MovieModal"
+//handles everything with each movie card i.e the image, name, rating and clicking to show the modal.
 function MovieCard({image, title, rating, onClick}){
+    //use state for the modal of all cards i.e if it's opened or not
     const [openModal, setOpenModal] = useState(false)
-
+    //creating the likey key
     const likesKey = `likes: ${title}`
     const likedKey = `liked: ${title}`
-    const[likes, setLikes] = useState(0)
-    const[liked,setLiked] = useState(true)
+    const[likes, setLikes] = useState(0) //set number of likes to 0 by default 
+    const[liked,setLiked] = useState(true) //sets liked to true by default
     useEffect(() => {
-        const storedLikes = localStorage.getItem(likesKey)
-        const storedLiked = localStorage.getItem(likedKey)
-        if(storedLikes) setLikes(parseInt(storedLikes))
-        if(storedLiked==='true') setLiked(true)
-    },[likedKey, likesKey])
+        const storedLikes = localStorage.getItem(likesKey) //stores number of likes in local storage for each movie so for example godzilla it'd be likes: godzilla
+        const storedLiked = localStorage.getItem(likedKey) //stores if it was liked.
+        if(storedLikes) setLikes(parseInt(storedLikes)) //passes number of likes into setLikes if it's changed
+        if(storedLiked==='true') setLiked(true) // passes in the boolen into setLiked depending on if it had been liked.
+    },[likedKey, likesKey]) //useEffect changes as they change
     function liker(){
         const newLiked = !liked
         console.log(newLiked)

@@ -1,3 +1,4 @@
+import "./SearchComponents.css"
 import { use, useEffect, useState } from 'react'
 import MovieCard from './MovieCard'
 const options = {
@@ -18,7 +19,7 @@ function SearchComponents({setResults}){
         const data = await response.json()
         console.log(data)
 
-        setResults(data)
+        setResults(data.results)
     }
     return(
     <form className="Submit">

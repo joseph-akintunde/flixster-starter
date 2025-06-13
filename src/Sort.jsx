@@ -12,6 +12,7 @@ function Sort({setResults,movies}){
     function SortMovies(movies, sortType){
         let Sorted = null;
         const newMovies = movies ?[...movies]:[]
+        console.log(newMovies)
         if(sortType === "title"){
         Sorted = newMovies.sort((a,b) => a.title.localeCompare(b.title))
     } else if(sortType === "rating"){
@@ -33,10 +34,10 @@ function Sort({setResults,movies}){
     useEffect(()=>{
         const newSortedItems = SortMovies(movies.results,sortType)
         let mov = {results: newSortedItems}
-        setResults(mov)
+        setResults(newSortedItems)
     },[sortType])
     return(
-            <select style={{width:'10em'}} id="movies" className="sort" value = {sortType} onChange={(e) => setSortType(e.target.value)}>
+            <select style={{width:'10em', backgroundColor: "#282c34", color: "white"}} id="movies" className="sort" value = {sortType} onChange={(e) => setSortType(e.target.value)}>
                 <option value="">Sort By</option>
                 <option value="title">Title(A-Z)</option>
                 <option value="releaseDate">Release Date</option>

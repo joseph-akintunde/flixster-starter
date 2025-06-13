@@ -5,6 +5,7 @@ import SearchComponents from './SearchComponents';
 import "./Header.css"
 import Sort from "./Sort"
 import { MovieModal } from './MovieModal';
+import "./footer.css"
 // let pageNumber = 1
 //const url = `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${pageNumber}`;
 const options = {
@@ -57,15 +58,32 @@ function App(){
   return (
     <div className="App">
       <header className="Header">
+          {/* <a href="App.jsx">NOW PLAYING</a>
+          <a href="#">FAVOURITES</a>
+          <a href="#">WATCHED</a> */}
           <h1>🎥 Flixster 🎬</h1>
           <SearchComponents setResults={ setResults }/>
           <Sort setResults={setResults} movies={results}/>
       </header>
     <MovieList onClick = {(movie) => {setMovie(movie); setOpenModal(true)}} results={results} movie = {movie}/>
     {openModal && <MovieModal closeModal={setOpenModal} keyId={movie.id} image={movie.image} overview={movie.overview} release_date={movie.release_date} title={movie.title}/>}
-    <button onClick={toNextPage}>load more</button>
-    <footer>
-      <p>&copy; joseph akintunde 2024</p>
+    <button className = "loadBtn" onClick={toNextPage}>LOAD MORE</button>
+    <footer className='Footer'>
+      <p>&copy; the joseph akintunde company llc 2030.
+        All Rights Reserved
+      </p>
+      <a className = "tospp" href="#">Terms of Service and Privacy Policy</a>
+      <div className='socials'>
+        <a href="https://www.instagram.com/jausephh/?hl=en">
+        <img width = "50px" src="src/img/instagram-logo-black-transparent.png" alt="" />
+      </a>
+      <a href="https://www.linkedin.com/in/joseph-akintunde-4a1492288/">
+        <img width = "40px" src="src/img/linkedin-icon-1-logo-png-transparent.png" alt="" />
+      </a>
+      <a href="https://github.com/joseph-akintunde/flixster-starter">
+        <img className = 'git' width = "40px" src="src/img/imagesgit.png"/>
+      </a>
+      </div>
     </footer>
     </div>
   )

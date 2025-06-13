@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import "./MovieModal.css"
 import PropTypes from "prop-types"
+import { use } from "react"
 export function MovieModal({closeModal,keyId,title,image,release_date,overview}){
     const[runtime, setRuntime] = useState(null)
     const[genres, setGenres] = useState([])
@@ -47,6 +48,11 @@ async function fetchMovies(keyId){
           console.log(error)
       }
 }
+useEffect(() => {
+    if(keyId){
+        fetchMovies(keyId)
+    }
+},[keyId])
 
     return(
         <div className="ModalBackground">
@@ -56,9 +62,19 @@ async function fetchMovies(keyId){
                 <p>Release Date: {release_date}</p>
                 <p>Runtime: {runtimeInHours(runtime)}</p>
                 <p>Genre: {genres.map((genre) => genre.name).join(", ")}</p> 
-                <iframe src="" frameborder="0"></iframe>
                 <p>Overview: {overview}</p>
-                <iframe src="" frameborder="0"></iframe>
+                {trailerKey && (
+                    <div className="trailer"> 
+                          <iframe 
+                          width="550"
+                          height="300"
+                          src={`https://www.youtube.com/embed/${trailerKey}`} frameborder="0"
+                          title="YouTube trailer player"
+                          allow = "accelerometer; autoplay; clipboard-write; encrypted media; gyroscope; picture-in-picture" 
+                          allowFullScreen
+                          >
+                          </iframe>
+                    </div>)}
                 <button className = "closeBtn" onClick = {() => closeModal(false)} id="closeModal">CLOSE</button>
             </div>
         </div>

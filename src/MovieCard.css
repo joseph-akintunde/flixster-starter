@@ -7,7 +7,7 @@
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
-    background-color: lightgrey;
+    background-color: grey;
 }
 /* .title{
     white-space: nowrap;
@@ -17,10 +17,10 @@
 } */
 .CardContent:hover{
    transform: scale(1.1);
-   transition: 1s ease-in-out;
+   transition: .75s ease-in-out;
 }
 .titleRating{
-    background-color: lightgrey;
+    background-color: grey;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

@@ -1,12 +1,4 @@
 import { useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  useNavigate,
-  Outlet,
-} from "react-router-dom";
 import "./App.css";
 import MovieList from "./MovieList";
 import SearchComponents from "./SearchComponents";
@@ -14,10 +6,6 @@ import "./Header.css";
 import Sort from "./Sort";
 import { MovieModal } from "./MovieModal";
 import "./footer.css";
-//import { Sidebar } from './sidebar';
-
-// let pageNumber = 1
-//const url = `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${pageNumber}`;
 const options = {
   method: "GET",
   headers: {
@@ -59,17 +47,9 @@ function App() {
     console.log("mess");
     fetchMovies();
   }, [pageNumber]);
-
-  // useEffect(() => {
-  //   console.log(movie);
-  // }, [movie]);
-  // console.log(movie);
   return (
     <div className="App">
       <header className="Header">
-        {/* <a href="App.jsx">NOW PLAYING</a>
-          <a href="#">FAVOURITES</a>
-          <a href="#">WATCHED</a> */}
         <h1>🎥 Flixster 🎬</h1>
         <SearchComponents setResults={setResults} />
         <Sort setResults={setResults} movies={results} />
@@ -106,19 +86,19 @@ function App() {
           <a href="https://www.instagram.com/jausephh/?hl=en">
             <img
               width="50px"
-              src="src/img/instagram-logo-black-transparent.png"
+              src="src/assets/instagram.png"
               alt=""
             />
           </a>
           <a href="https://www.linkedin.com/in/joseph-akintunde-4a1492288/">
             <img
               width="40px"
-              src="src/img/linkedin-icon-1-logo-png-transparent.png"
+              src="src/assets/linkedin.png"
               alt=""
             />
           </a>
           <a href="https://github.com/joseph-akintunde/flixster-starter">
-            <img className="git" width="40px" src="src/img/imagesgit.png" />
+            <img className="git" width="40px" src="src/assets/imagesgit.png" />
           </a>
         </div>
       </footer>

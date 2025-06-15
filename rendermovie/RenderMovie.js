@@ -1,9 +1,11 @@
+//utility function to iterate over the array that has the movie details. it's in an object that has the whole movie details in the API
 export function RenderMovie(dataObject){
     const arr = []
     for(let i = 0; i < dataObject.length; i++){
         let movies = dataObject[i]
         console.log(movies)
         let items = {
+          //the items for these things are stored as that in the array i.e poster_path, runtime, overview
             "image": movies.poster_path,
             "title": movies.original_title,
             "rating": movies.vote_average,
@@ -13,23 +15,10 @@ export function RenderMovie(dataObject){
             "genres": movies.genres,
             "id": movies.id
         }
-          arr.push(items)
+          arr.push(items) //add it to an array named arr
     }
     return(
-        arr
+        arr // return the array
     )
   
 }
-// const url = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1';
-// const options = {
-//   method: 'GET',
-//   headers: {
-//     accept: 'application/json',
-//     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2NGM4OGY3ZWI4ZDU2YThkNWYzYjY3MzI4ZjU2YTM2ZSIsIm5iZiI6MTc0OTUzMzI3OC4yMjcsInN1YiI6IjY4NDdjMjVlZWM3MzI5M2NkN2JiMzZhYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Uhoqn3XL1sDXT-jJhsIbVMI2gzkhF5hzYOgdF9M8zA0'
-//   }
-// };
-
-// fetch(url, options)
-//   .then(res => res.json())
-//   .then(json => console.log(json))
-//   .catch(err => console.error(err));

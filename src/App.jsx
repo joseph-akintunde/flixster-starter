@@ -15,30 +15,27 @@ const options = {
   },
 };
 function App() {
-  const [openModal, setOpenModal] = useState(false);
-  //const [selectedMovie, setSelectedMovie] = useState(null)
-  const [movie, setMovie] = useState("Mission Impossible");
-  const [results, setResults] = useState([]);
-  const [pageNumber, setPageNumber] = useState(1);
+  const [openModal, setOpenModal] = useState(false); //default state of modal
+  const [movie, setMovie] = useState("Mission Impossible"); //default state of movie
+  const [results, setResults] = useState([]); //default state of results array
+  const [pageNumber, setPageNumber] = useState(1); //default state of page number
   function toNextPage() {
     setPageNumber(pageNumber + 1);
-  }
-  async function fetchMovies(page = pageNumber) {
-    console.log("any");
+  } //function to increase the page number. used for the load more functionality
+  async function fetchMovies(page = pageNumber) { //function to actually fetch the movies
     try {
       const apiKey = import.meta.env.VITE_APP_API_KEY;
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${pageNumber}`,
+        `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${pageNumber}`, // API call
         options
       );
-      if (!response.ok) {
-        throw new Error("Can't load movies");
+      if (!response.ok) { //if the call wasn't succesful,
+        throw new Error("Can't load movies"); //message this.
       }
       const data = await response.json();
-      console.log(data);
-      setResults((prev) => page > 1 ? [...prev, ...data.results] : data.results);
+      //console.log(data);
+      setResults((prev) => page > 1 ? [...prev, ...data.results] : data.results);//set results to be prev and next page combined if page number is greater than 1, otherwise set it to be just prev page.
       // setResults(data.results);
-      console.log(data.results);
     } catch (error) {
       console.log(error);
     }
@@ -46,22 +43,24 @@ function App() {
   useEffect(() => {
     console.log("mess");
     fetchMovies();
-  }, [pageNumber]);
+  }, [pageNumber]);//calling the function fetchMovies and making it change as pageNumber changes
   return (
     <div className="App">
       <header className="Header">
         <h1>🎥 Flixster 🎬</h1>
-        <SearchComponents setResults={setResults} />
-        <Sort setResults={setResults} movies={results} />
+        <SearchComponents //search call
+        setResults={setResults} /> 
+        <Sort //sort call
+        setResults={setResults} movies={results} />
       </header>
-      <MovieList
+      <MovieList //movielist function call 
         onClick={(movie) => {
           setMovie(movie);
           setOpenModal(true);
         }}
         results={results}
       />
-      {openModal && (
+      {openModal && ( //modal content
         <MovieModal
           closeModal={setOpenModal}
           keyId={movie.id}
@@ -71,7 +70,8 @@ function App() {
           title={movie.title}
         />
       )}
-      <button className="loadBtn" onClick={toNextPage}>
+      <button //load more functionality
+      className="loadBtn" onClick={toNextPage}>
         LOAD MORE
       </button>
       <footer className="Footer">
